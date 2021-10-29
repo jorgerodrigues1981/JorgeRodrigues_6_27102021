@@ -5,17 +5,16 @@ const app = express();
 const mongoose = require('mongoose');
 const path = require('path');
 
-
+require('dotenv').config()
 
 const sauceRoutes = require('./routes/sauce');
 const userRoutes = require('./routes/user');
 
-mongoose.connect('mongodb+srv://user_02:user02@cluster0.za5ak.mongodb.net/users?retryWrites=true&w=majority',
+mongoose.connect(`mongodb+srv://${process.env.DB_USER}:${process.env.DB_PASS}@cluster0.za5ak.mongodb.net/users?retryWrites=true&w=majority`,
   { useNewUrlParser: true,
     useUnifiedTopology: true })
   .then(() => console.log('Connexion à MongoDB réussie !'))
   .catch(() => console.log('Connexion à MongoDB échouée !'));
-
 
 //Eviter les erreurs de CORS
 app.use((req, res, next) => {

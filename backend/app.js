@@ -3,12 +3,17 @@ const bodyParser = require('body-parser');
 const app = express();
 const mongoose = require('mongoose');
 const path = require('path');
+const helmet = require("helmet");
 
+app.use(helmet());
+
+//Module dotenv
 require('dotenv').config()
 
 const sauceRoutes = require('./routes/sauce');
 const userRoutes = require('./routes/user');
 
+//Connection à la base de données Mongoose, le username et le mot de pass sont chargés à partir du fichier .env
 mongoose.connect(`mongodb+srv://${process.env.DB_USER}:${process.env.DB_PASS}@cluster0.za5ak.mongodb.net/users?retryWrites=true&w=majority`,
   { useNewUrlParser: true,
     useUnifiedTopology: true })

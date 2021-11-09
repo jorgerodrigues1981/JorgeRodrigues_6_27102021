@@ -1,4 +1,5 @@
 const Sauce = require('../models/sauce');
+//Accès aux fonctions qui nous permettent de modifier le système de fichiers
 const fs = require('fs');
 
 //Criation d'une route GET

@@ -21,7 +21,7 @@ mongoose.connect(`${process.env.DB_ORIGIN}${process.env.DB_USER}:${process.env.D
   .then(() => console.log('Connexion à MongoDB réussie !'))
   .catch(() => console.log('Connexion à MongoDB échouée !'));
 
-//Eviter les erreurs de CORS
+// Eviter les erreurs de CORS
 app.use((req, res, next) => {
   res.setHeader('Access-Control-Allow-Origin', '*');
   res.setHeader('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content, Accept, Content-Type, Authorization');

@@ -1,9 +1,9 @@
-// Import du package http 
+// Importation du package http 
 const http = require('http');
-// Import de app pour utilisation de l'application sur le serveur
+// Importation de app pour utilisation de l'application sur le serveur
 const app = require('./app');
 
-
+// La fonction normalizePort renvoie un port valide, qu'il soit fourni sous la forme d'un numéro ou d'une chaîne 
 const normalizePort = val => {
   const port = parseInt(val, 10);
 
@@ -20,6 +20,7 @@ const normalizePort = val => {
 const port = normalizePort(process.env.PORT || '3000');
 app.set('port', port);
 
+// La fonction errorHandler recherche les différentes erreurs et les gère de manière appropriée
 const errorHandler = error => {
   if (error.syscall !== 'listen') {
     throw error;
@@ -40,6 +41,7 @@ const errorHandler = error => {
   }
 };
 
+// Création d'un nouveu serveur en passant comme argument app
 const server = http.createServer(app);
 
 server.on('error', errorHandler);

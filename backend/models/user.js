@@ -2,7 +2,6 @@ const mongoose = require('mongoose');
 
 const uniqueValidator = require('mongoose-unique-validator');
 
-const sanitizerPlugin = require('mongoose-sanitizer-plugin');
 
 //Schéma de données pour les users
 const userSchema = mongoose.Schema({
@@ -12,7 +11,5 @@ const userSchema = mongoose.Schema({
 
 // Plugin pour garantir un email unique
 userSchema.plugin(uniqueValidator);
-// Plugin pour Mongoose qui vérifie les champs du model avant de les enregistrer dans la base MongoDB.
-userSchema.plugin(sanitizerPlugin);
 
 module.exports = mongoose.model('User', userSchema);

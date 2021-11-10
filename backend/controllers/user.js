@@ -44,6 +44,7 @@ exports.login = (req, res, next) => {
             // Si les données sont correctes on renvoie un statut 200 et un objet JSON avec un userID + un token
             res.status(200).json({
               userId: user._id,
+              // Function sign de jsonwebtoken pour encoder un nouveau token
               token: jwt.sign(
                 { userId: user._id },
                 'RANDOM_TOKEN_SECRET',

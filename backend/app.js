@@ -5,8 +5,11 @@ const app = express();
 const mongoose = require('mongoose');
 // On donne accès au chemin de notre système de fichier
 const path = require('path');
+// Importation d'helmet
 const helmet = require("helmet");
 
+// Sécuriser Express en définissant divers en-têtes HTTP
+app.use(helmet());
 
 //Module dotenv
 require('dotenv').config()
@@ -32,8 +35,7 @@ app.use((req, res, next) => {
 // Pour analyser le corps de la requête
 app.use(express.json());
 
-// Sécuriser Express en définissant divers en-têtes HTTP
-app.use(helmet());
+
 // Permet de charger les fichiers qui sont dans le repertoire images
 app.use('/images', express.static(path.join(__dirname, 'images')));
 

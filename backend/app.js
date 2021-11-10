@@ -1,11 +1,14 @@
+// Importation d'express
 const express = require('express');
+// Permet d'extraire l'objet JSON des requêtes POST
 const bodyParser = require('body-parser');
 const app = express();
+// Plugin Mongoose pour se connecter à la data base Mongo Db
 const mongoose = require('mongoose');
+// On donne accès au chemin de notre système de fichier
 const path = require('path');
 const helmet = require("helmet");
 
-app.use(helmet());
 
 //Module dotenv
 require('dotenv').config()
@@ -14,7 +17,7 @@ const sauceRoutes = require('./routes/sauce');
 const userRoutes = require('./routes/user');
 
 //Connection à la base de données Mongoose, le username et le mot de pass sont chargés à partir du fichier .env
-mongoose.connect(`mongodb+srv://${process.env.DB_USER}:${process.env.DB_PASS}@cluster0.za5ak.mongodb.net/users?retryWrites=true&w=majority`,
+mongoose.connect(`${process.env.DB_ORIGIN}${process.env.DB_USER}:${process.env.DB_PASS}${process.env.DB_URL}`,
   { useNewUrlParser: true,
     useUnifiedTopology: true })
   .then(() => console.log('Connexion à MongoDB réussie !'))
@@ -28,8 +31,12 @@ app.use((req, res, next) => {
   next();
 });
 
+// Transforme les données arrivant de la requête POST en un objet JSON exploitable
 app.use(bodyParser.json());
 
+// Sécuriser Express en définissant divers en-têtes HTTP
+app.use(helmet());
+// Permet de charger les fichiers qui sont dans le repertoire images
 app.use('/images', express.static(path.join(__dirname, 'images')));
 
 app.use('/api/auth', userRoutes);

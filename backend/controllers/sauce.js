@@ -1,9 +1,11 @@
+// On récupère le model pour la sauce
 const Sauce = require('../models/sauce');
 //Accès aux fonctions qui nous permettent de modifier le système de fichiers
 const fs = require('fs');
 
-//Criation d'une route GET
+//Criation d'une route GET pour récupérer toutes les sauces dans la base de données Mongoose
 exports.getAllSauces = (req, res, next) => {
+  // Méthode find pour obtenir la liste de sauces à partir de la base de données
   Sauce.find().then(
     (sauces) => {
       res.status(200).json(sauces);
@@ -16,8 +18,9 @@ exports.getAllSauces = (req, res, next) => {
     }
   );
 };
-//Selectione une seule sauce à partir de son Id
+// Selectione une seule sauce à partir de son Id
 exports.getOneSauce = (req, res, next) => {
+  // Méthode findOne pour selectionner une seule sauce
   Sauce.findOne({
     _id: req.params.id
   }).then(

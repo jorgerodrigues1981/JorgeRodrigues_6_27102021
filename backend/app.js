@@ -1,7 +1,5 @@
 // Importation d'express
 const express = require('express');
-// Permet d'extraire l'objet JSON des requêtes POST
-const bodyParser = require('body-parser');
 const app = express();
 // Plugin Mongoose pour se connecter à la data base Mongo Db
 const mongoose = require('mongoose');
@@ -31,8 +29,8 @@ app.use((req, res, next) => {
   next();
 });
 
-// Transforme les données arrivant de la requête POST en un objet JSON exploitable
-app.use(bodyParser.json());
+// Pour analyser le corps de la requête
+app.use(express.json());
 
 // Sécuriser Express en définissant divers en-têtes HTTP
 app.use(helmet());

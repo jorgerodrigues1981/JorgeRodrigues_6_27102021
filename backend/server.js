@@ -1,5 +1,8 @@
+// Import du package http 
 const http = require('http');
+// Import de app pour utilisation de l'application sur le serveur
 const app = require('./app');
+
 
 const normalizePort = val => {
   const port = parseInt(val, 10);
@@ -12,6 +15,8 @@ const normalizePort = val => {
   }
   return false;
 };
+
+// Le server va écouter le port fourni par défaut ou le port 3000
 const port = normalizePort(process.env.PORT || '3000');
 app.set('port', port);
 
@@ -44,4 +49,5 @@ server.on('listening', () => {
   console.log('Listening on ' + bind);
 });
 
+// Configuation du serveur pour qu'il écoute
 server.listen(port);

@@ -1,7 +1,6 @@
 const mongoose = require('mongoose');
-
+// Importation du module Mongoose unique validator
 const uniqueValidator = require('mongoose-unique-validator');
-
 
 //Schéma de données pour les users
 const userSchema = mongoose.Schema({

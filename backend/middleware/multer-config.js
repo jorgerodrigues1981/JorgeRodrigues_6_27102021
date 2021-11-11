@@ -1,3 +1,4 @@
+// Importation du package multer pour gérer les images
 const multer = require('multer');
 
 const MIME_TYPES = {
@@ -6,10 +7,14 @@ const MIME_TYPES = {
   'image/png': 'png'
 };
 
+// Enregistre les fichiers dans le dossier images
 const storage = multer.diskStorage({
   destination: (req, file, callback) => {
     callback(null, 'images');
   },
+  /* La fonction filename indique à multer d'utiliser le nom d'origine, de remplacer les espaces par des underscores 
+  d'ajouter un timestamp Date.now() comme nom de fichier. 
+  Elle utilise ensuite la constante dictionnaire de type MIME pour résoudre l'extension de fichier appropriée */
   filename: (req, file, callback) => {
     const name = file.originalname.split(' ').join('_');
     const extension = MIME_TYPES[file.mimetype];

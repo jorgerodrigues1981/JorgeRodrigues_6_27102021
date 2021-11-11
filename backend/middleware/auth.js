@@ -16,6 +16,7 @@ module.exports = (req, res, next) => {
       // Si tout est valide on passe au middleware suivant
       next();
     }
+  // Récupère les erreurs
   } catch {
     res.status(401).json({
       error: new Error('Invalid request!')

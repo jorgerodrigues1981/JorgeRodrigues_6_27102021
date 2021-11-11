@@ -13,7 +13,7 @@ app.use(helmet());
 
 //Module dotenv
 require('dotenv').config()
-
+// Importation des routes contenu dans le dossier routes
 const sauceRoutes = require('./routes/sauce');
 const userRoutes = require('./routes/user');
 
@@ -39,6 +39,7 @@ app.use(express.json());
 // Permet de charger les fichiers qui sont dans le repertoire images
 app.use('/images', express.static(path.join(__dirname, 'images')));
 
+// Implementation des routes 
 app.use('/api/auth', userRoutes);
 app.use('/api/sauces', sauceRoutes);
 

@@ -1,4 +1,5 @@
 const express = require('express');
+// Création du router Express
 const router = express.Router();
 
 // Importation du middleware authentification et multer pour les images

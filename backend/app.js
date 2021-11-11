@@ -26,8 +26,11 @@ mongoose.connect(`${process.env.DB_ORIGIN}${process.env.DB_USER}:${process.env.D
 
 // Eviter les erreurs de CORS
 app.use((req, res, next) => {
-  res.setHeader('Access-Control-Allow-Origin', '*');
+  // Accéder à notre API depuis n'importe quelle origine
+  res.setHeader('Access-Control-Allow-Origin', '*'); 
+  // Ajouter les headers mentionnés aux requêtes envoyées vers notre API
   res.setHeader('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content, Accept, Content-Type, Authorization');
+  // Envoyer des requêtes avec les méthodes mentionnées 
   res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, PATCH, OPTIONS');
   next();
 });
